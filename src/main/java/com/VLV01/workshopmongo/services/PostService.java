@@ -1,12 +1,13 @@
 package com.VLV01.workshopmongo.services;
 
-import com.VLV01.workshopmongo.domain.Post;
-import com.VLV01.workshopmongo.domain.User;
-import com.VLV01.workshopmongo.dto.UserDTO;
-import com.VLV01.workshopmongo.repository.PostRepository;
-import com.VLV01.workshopmongo.services.exception.ObjectNotFoundException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.VLV01.workshopmongo.domain.Post;
+import com.VLV01.workshopmongo.repository.PostRepository;
+import com.VLV01.workshopmongo.services.exception.ObjectNotFoundException;
 
 import java.util.List;
 
@@ -23,6 +24,10 @@ public class PostService {
             throw new ObjectNotFoundException("Objeto não encontrado");
         }
         return user;
+    }
+
+    public List<Post> findByTitle(String text) {
+        return repo.findByTitleContainingIgnoreCase(text);
     }
 
 
